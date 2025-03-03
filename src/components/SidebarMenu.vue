@@ -1,5 +1,5 @@
 <template>
-  <aside class="basis-[280px] h-screen max-h-screen border-e border-slate-300">
+  <aside class="min-w-[280px] h-screen max-h-screen border-e border-slate-300">
     <header class="flex items-center h-12 p-4 border-b border-slate-400">
       <h1 class="text-xl">فرم ساز</h1>
     </header>

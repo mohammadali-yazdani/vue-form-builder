@@ -30,7 +30,7 @@ function onDragEnd() {
   <div class="app flex h-screen">
     <aside
       v-if="shouldShowSidebar && sidebar"
-      class="flex flex-col basis-[280px] border-e border-slate-300"
+      class="flex flex-col min-w-[280px] border-e border-slate-300"
     >
       <header class="flex items-center h-12 p-4 border-b border-slate-400">
         <h1 class="text-xl">فرم ساز</h1>
