@@ -55,6 +55,11 @@ export const useFormSore = defineStore("form", {
         }
       }
     },
+    searchFormsByName(query) {
+      return this.forms.filter((form) =>
+        form.name.toLowerCase().includes(query.trim().toLowerCase())
+      );
+    },
   },
 
   persist: true,
