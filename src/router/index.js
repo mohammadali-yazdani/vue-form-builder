@@ -12,7 +12,7 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "داشبورد",
+      name: "فرم ساز",
       component: DashboardLayout,
       meta: {
         icon: Files,
