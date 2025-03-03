@@ -1,1 +1,23 @@
 @import "tailwindcss";
+@import "./fonts.css";
+
+@layer base {
+  html,
+  :host {
+    font-family: "Vazirmatn FD";
+  }
+}
+
+@theme {
+  --default-font-family: "Vazirmatn FD";
+}
+
+/* MAIN LAYOUT */
+.app main {
+  @apply flex-1 min-h-[calc(100vh-48px)] overflow-x-hidden bg-slate-200;
+}
+
+/* ROUTER LINKS */
+.router-link-active.router-link-exact-active {
+  @apply bg-slate-200;
+}
