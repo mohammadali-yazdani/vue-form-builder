@@ -79,7 +79,7 @@
                     type="text"
                     id="formName"
                     class="w-full outline-none border px-4 py-2 rounded"
-                    :value="name"
+                    v-model="newName"
                   />
                 </div>
 
@@ -94,6 +94,7 @@
                   <button
                     type="button"
                     class="inline-flex justify-center rounded-md border border-transparent bg-red-200 px-4 py-2 text-sm font-medium text-red-900 cursor-pointer"
+                    @click="handleRename"
                   >
                     ویرایش
                   </button>
@@ -157,7 +158,7 @@
                   </button>
                   <button
                     type="submit"
-                    @click="removeFormHandler"
+                    @click="handleRemoveForm"
                     class="inline-flex justify-center rounded-md border border-transparent bg-red-200 px-4 py-2 text-sm font-medium text-red-900 cursor-pointer"
                     autofocus
                   >
@@ -194,12 +195,14 @@ const { name, id } = defineProps({
   id: String,
 });
 
-const { removeForm } = useFormSore();
+const { removeForm, updateForm } = useFormSore();
 
 const isOpen = ref({
   rename: false,
   remove: false,
 });
+
+const newName = ref(name);
 
 function closeModal(name) {
   isOpen.value = { ...isOpen.value, [name]: false };
@@ -208,10 +211,19 @@ function openModal(name) {
   isOpen.value = { ...isOpen.value, [name]: true };
 }
 
-function removeFormHandler(e) {
+function handleRemoveForm(e) {
   e.preventDefault();
 
   removeForm(id);
   closeModal("remove");
+}
+
+function handleRename() {
+  if (newName.value === name) {
+    return;
+  }
+
+  updateForm(id, newName.value);
+  closeModal("rename");
 }
 </script>
