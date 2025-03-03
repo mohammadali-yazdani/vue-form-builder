@@ -18,6 +18,13 @@ export const useFormSore = defineStore("form", {
     removeForm(id) {
       this.forms = this.forms.filter((form) => form.id !== id);
     },
+    updateForm(id, name) {
+      const form = this.forms.find((form) => form.id === id);
+
+      if (form) {
+        form.name = name;
+      }
+    },
     updateFormElements(id, elements) {
       const form = this.forms.find((form) => form.id === id);
       if (form) {
