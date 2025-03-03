@@ -1,0 +1,164 @@
+{
+  "forms": [
+    {
+      "id": "1",
+      "name": "فرم ثبت نام کاربر",
+      "elements": [
+        {
+          "id": "el-1",
+          "elementId": 1,
+          "type": "text",
+          "label": "نام و نام خانوادگی",
+          "validations": {
+            "required": true,
+            "min": 3,
+            "max": 50
+          },
+          "position": {
+            "x": 10,
+            "y": 20,
+            "width": 300,
+            "height": 40
+          },
+          "defaultValue": ""
+        },
+        {
+          "id": "el-2",
+          "elementId": 2,
+          "type": "number",
+          "label": "شماره تلفن",
+          "validations": {
+            "required": false,
+            "min": 10,
+            "max": 11
+          },
+          "position": {
+            "x": 10,
+            "y": 70,
+            "width": 300,
+            "height": 40
+          },
+          "defaultValue": ""
+        },
+        {
+          "id": "el-3",
+          "elementId": 6,
+          "type": "select",
+          "label": "جنسیت",
+          "options": ["مرد", "زن"],
+          "validations": {
+            "required": true
+          },
+          "position": {
+            "x": 10,
+            "y": 120,
+            "width": 300,
+            "height": 40
+          },
+          "defaultValue": "مرد"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "فرم نظرسنجی محصول",
+      "elements": [
+        {
+          "id": "el-4",
+          "elementId": 8,
+          "type": "range",
+          "label": "امتیاز به کیفیت محصول",
+          "validations": {
+            "required": true,
+            "min": 1,
+            "max": 5,
+            "step": 1
+          },
+          "position": {
+            "x": 10,
+            "y": 20,
+            "width": 300,
+            "height": 40
+          },
+          "defaultValue": 3
+        },
+        {
+          "id": "el-5",
+          "elementId": 5,
+          "type": "radio",
+          "label": "آیا دوباره این محصول را خریداری می‌کنید؟",
+          "options": ["بله", "خیر"],
+          "validations": {
+            "required": false
+          },
+          "position": {
+            "x": 10,
+            "y": 70,
+            "width": 300,
+            "height": 40
+          },
+          "defaultValue": "بله"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "فرم درخواست پشتیبانی",
+      "elements": [
+        {
+          "id": "el-6",
+          "elementId": 1,
+          "type": "text",
+          "label": "نام کاربری",
+          "validations": {
+            "required": true,
+            "min": 5,
+            "max": 20
+          },
+          "position": {
+            "x": 10,
+            "y": 20,
+            "width": 300,
+            "height": 40
+          },
+          "defaultValue": ""
+        },
+        {
+          "id": "el-7",
+          "elementId": 6,
+          "type": "select",
+          "label": "نوع مشکل",
+          "options": ["مشکل فنی", "مشکل مالی", "سایر"],
+          "validations": {
+            "required": false
+          },
+          "position": {
+            "x": 10,
+            "y": 70,
+            "width": 300,
+            "height": 40
+          },
+          "defaultValue": "مشکل فنی"
+        },
+        {
+          "id": "el-8",
+          "elementId": 1,
+          "type": "text",
+          "label": "شرح مشکل",
+          "validations": {
+            "required": true,
+            "min": 10,
+            "max": 500
+          },
+          "position": {
+            "x": 10,
+            "y": 120,
+            "width": 400,
+            "height": 100
+          },
+          "defaultValue": ""
+        }
+      ]
+    }
+  ]
+}
