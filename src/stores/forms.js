@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import formData from "@/data/forms.json";
 import { useLocalStorage } from "@vueuse/core";
 import { useToast } from "vue-toastification";
 
@@ -8,7 +7,7 @@ const toast = useToast();
 export const useFormSore = defineStore("form", {
   state: () => {
     return {
-      forms: useLocalStorage("pinia/forms", [...formData.forms]),
+      forms: useLocalStorage("pinia/forms", []),
     };
   },
 
