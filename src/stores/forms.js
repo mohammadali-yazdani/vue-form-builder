@@ -57,6 +57,7 @@ export const useFormStore = defineStore("form", () => {
     const form = forms.value.find((f) => f.id === formId);
     if (form) {
       form.elements = form.elements.filter((el) => el.id !== elementId);
+      toast("تغییرات ذخیره شد");
     }
   }
 
