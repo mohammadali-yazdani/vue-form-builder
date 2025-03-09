@@ -27,7 +27,9 @@
       :multiple="element.multiple"
       :required="element.validations.required"
     >
-      <option v-for="option in element.options" :key="option" :value="option">{{ option }}</option>
+      <option v-for="option in element.options" :key="option.id" :value="option.id">
+        {{ option.label }}
+      </option>
     </select>
 
     <!-- ? RADIO -->
@@ -36,12 +38,27 @@
         <input
           class="size-4"
           :type="element.type"
-          :id="option"
-          :name="element.id"
-          :value="option"
+          :id="option.id"
+          :name="`radio-${element.id}`"
+          :value="option.id"
           :required="element.validations.required"
         />
-        <label :for="option">{{ option }}</label>
+        <label :for="option.id">{{ option.label }}</label>
+      </div>
+    </template>
+
+    <!-- ? CHECKBOX -->
+    <template v-if="element.type === 'checkbox'">
+      <div class="flex items-center gap-2" v-for="option in element.options" :key="option">
+        <input
+          class="size-4"
+          :type="element.type"
+          :id="option.id"
+          :name="`checkbox-${element.id}`"
+          :value="option.id"
+          :required="false"
+        />
+        <label :for="option.id">{{ option.label }}</label>
       </div>
     </template>
   </div>

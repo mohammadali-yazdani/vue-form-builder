@@ -175,7 +175,7 @@
 </template>
 
 <script setup>
-import { useFormSore } from "@/stores/forms";
+import { useFormStore } from "@/stores/forms";
 import {
   Dialog,
   DialogPanel,
@@ -188,14 +188,14 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { Edit, Ellipsis, Trash2 } from "lucide-vue-next";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const { name, id } = defineProps({
   name: String,
   id: String,
 });
 
-const { removeForm, updateForm } = useFormSore();
+const { removeForm, updateForm } = useFormStore();
 
 const isOpen = ref({
   rename: false,
@@ -226,4 +226,13 @@ function handleRename() {
   updateForm(id, newName.value);
   closeModal("rename");
 }
+
+watch(
+  () => isOpen.value.rename,
+  (newValue) => {
+    if (!newValue) {
+      newName.value = name;
+    }
+  }
+);
 </script>

@@ -1,7 +1,7 @@
 <script setup>
-import FormElementButton from "@/components/FormElementButton.vue";
+import FormElementButton from "@/components/FormBuilder/FormElementButton.vue";
 import { elements } from "@/data/elements";
-import { ChevronLeft, Home, Menu } from "lucide-vue-next";
+import { ChevronLeft, Home, Menu, Target } from "lucide-vue-next";
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { Container, Draggable } from "vue3-smooth-dnd";
@@ -30,13 +30,16 @@ function onDragEnd() {
   <div class="app flex h-screen">
     <aside
       v-if="shouldShowSidebar && sidebar"
-      class="flex flex-col min-w-[280px] border-e border-slate-300"
+      class="flex flex-col w-12 md:min-w-[280px] border-e border-slate-300"
     >
-      <header class="flex items-center h-12 p-4 border-b border-slate-400">
-        <h1 class="text-xl">فرم ساز</h1>
+      <header
+        class="flex items-center justify-center md:justify-start h-12 md:p-4 border-b border-slate-400"
+      >
+        <h1 class="text-xl hidden md:block">فرم ساز</h1>
+        <Target class="md:hidden" />
       </header>
       <Container
-        class="flex flex-col gap-2 p-4"
+        class="flex flex-col gap-2 py-4 md:p-4"
         group-name="form-inputs"
         behaviour="copy"
         orientation="vertical"
@@ -55,9 +58,10 @@ function onDragEnd() {
       </Container>
     </aside>
 
-    <div class="flex flex-col w-full">
+    <div class="w-full" :class="{ 'flex flex-col': shouldShowSidebar }">
       <header
         class="flex items-center justify-between bg-white h-12 px-6 border-b border-slate-400"
+        :class="{ 'sticky top-0 z-20': !shouldShowSidebar }"
       >
         <div class="flex items-center gap-2">
           <button

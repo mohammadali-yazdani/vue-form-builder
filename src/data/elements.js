@@ -8,6 +8,7 @@ import {
   Sliders,
   TextCursor,
 } from "lucide-vue-next";
+import { v4 } from "uuid";
 
 export const elements = [
   {
@@ -54,7 +55,16 @@ export const elements = [
     validations: {
       required: false,
     },
-    options: ["مورد اول", "مورد دوم"],
+    options: [
+      {
+        id: v4().slice(0, 5),
+        label: "مورد 1",
+      },
+      {
+        id: v4().slice(0, 5),
+        label: "مورد 2",
+      },
+    ],
     icon: CheckSquare,
     color: "#58D68D",
   },
@@ -66,7 +76,16 @@ export const elements = [
     validations: {
       required: false,
     },
-    options: ["مورد اول", "مورد دوم"],
+    options: [
+      {
+        id: v4().slice(0, 5),
+        label: "مورد 1",
+      },
+      {
+        id: v4().slice(0, 5),
+        label: "مورد 2",
+      },
+    ],
     icon: CircleCheckBig,
     color: "#F28B82",
   },
@@ -78,7 +97,16 @@ export const elements = [
     validations: {
       required: false,
     },
-    options: ["مورد اول", "مورد دوم"],
+    options: [
+      {
+        id: v4().slice(0, 5),
+        label: "مورد 1",
+      },
+      {
+        id: v4().slice(0, 5),
+        label: "مورد 2",
+      },
+    ],
     icon: ChevronDown,
     color: "#74C0FC",
     multiple: false,
@@ -91,7 +119,16 @@ export const elements = [
     validations: {
       required: false,
     },
-    options: ["مورد اول", "مورد دوم"],
+    options: [
+      {
+        id: v4().slice(0, 5),
+        label: "مورد 1",
+      },
+      {
+        id: v4().slice(0, 5),
+        label: "مورد 2",
+      },
+    ],
     icon: Layers,
     color: "#FFB074",
     multiple: true,

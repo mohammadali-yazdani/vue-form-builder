@@ -32,7 +32,7 @@
         group-name="form-inputs"
       >
         <Draggable v-for="(element, index) in form.elements" :key="element.id">
-          <EditableField :element="element" :index="index" :formId="id" />
+          <EditableInput :element="element" :index="index" :formId="id" />
         </Draggable>
       </Container>
     </div>
@@ -40,9 +40,9 @@
 </template>
 
 <script setup>
-import EditableField from "@/components/EditableField.vue";
+import EditableInput from "@/components/FormBuilder/EditableInput.vue";
 import { elements } from "@/data/elements";
-import { useFormSore } from "@/stores/forms";
+import { useFormStore } from "@/stores/forms";
 import { applyDrag } from "@/utils/helper";
 import { CornerLeftUp } from "lucide-vue-next";
 import { computed, ref } from "vue";
@@ -53,7 +53,7 @@ import { v4 as uuid4 } from "uuid";
 const {
   params: { id },
 } = useRoute();
-const formStore = useFormSore();
+const formStore = useFormStore();
 
 const isEnter = ref(false);
 

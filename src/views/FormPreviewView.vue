@@ -7,12 +7,13 @@
     <div class="p-6">
       <h1 class="font-semibold text-2xl">{{ form.name }}</h1>
 
-      <InputField v-for="element in form.elements" :key="element.id" :element="element" />
+      <PreviewInput v-for="element in form.elements" :key="element.id" :element="element" />
 
       <div class="my-5">
         <button
           class="font-semibold px-5 py-2 text-white bg-cyan-600 hover:bg-cyan-700 rounded cursor-pointer"
           type="submit"
+          @click="handleSubmit"
         >
           ثبت
         </button>
@@ -26,14 +27,20 @@
 </template>
 
 <script setup>
-import InputField from "@/components/InputField.vue";
-import { useFormSore } from "@/stores/forms";
+import PreviewInput from "@/components/FormPreview/PreviewInput.vue";
+import { useFormStore } from "@/stores/forms";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
-const formStore = useFormSore();
+const formStore = useFormStore();
+
 const shouldShowHeader = computed(() => route.meta.showHeader);
 
 const form = formStore.forms.find((form) => form.id === route.params.id);
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+  console.log(event);
+};
 </script>

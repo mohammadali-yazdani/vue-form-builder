@@ -3,6 +3,7 @@
     <div
       class="editable bg-white rounded-lg overflow-hidden border-2 border-transparent hover:border-orange-200"
     >
+      <!-- ? DRAG HANDLER -->
       <div
         class="editable-drag h-10 grid place-items-center text-slate-200 cursor-move opacity-0 group-hover/editable:opacity-100"
       >
@@ -53,16 +54,16 @@
                     </div>
                     <button
                       class="text-red-600 hover:bg-red-100 rounded-full cursor-pointer p-2"
-                      @click="() => handleRemoveOption(idx)"
+                      @click="() => handleRemoveOption(option.id)"
                     >
                       <Trash2 :size="20" />
                     </button>
                     <span
-                      @input="(e) => handleChangeOption(e, idx)"
+                      @input="() => handleChangeOption(option.id)"
                       class="text-slate-700 p-1 outline-cyan-600"
                       contenteditable
                     >
-                      {{ option }}
+                      {{ option.label }}
                     </span>
                   </div>
                 </Draggable>
@@ -101,11 +102,11 @@
                       <Trash2 :size="20" />
                     </button>
                     <span
-                      @input="(e) => handleChangeOption(e, idx)"
+                      @input="() => handleChangeOption(option.id)"
                       class="text-slate-700 p-1 outline-cyan-600"
                       contenteditable
                     >
-                      {{ option }}
+                      {{ option.label }}
                     </span>
                   </div>
                 </Draggable>
@@ -206,12 +207,13 @@
 
 <script setup>
 import { elements } from "@/data/elements";
-import { useFormSore } from "@/stores/forms";
+import { useFormStore } from "@/stores/forms";
 import { applyDrag } from "@/utils/helper";
 import { Asterisk, GripHorizontal, GripVertical, Plus, Trash2 } from "lucide-vue-next";
 import { Container, Draggable } from "vue3-smooth-dnd";
+import { v4 as uuid4 } from "uuid";
 
-const { removeElement, updateElement } = useFormSore();
+const { removeElement, updateElement } = useFormStore();
 
 const { element, index, formId } = defineProps({
   element: Object,
@@ -254,7 +256,13 @@ const handleAddOption = () => {
   const newIndex = element.options.length + 1;
   updateElement(formId, element.id, {
     ...element,
-    options: [...element.options, `آیتم ${newIndex}`],
+    options: [
+      ...element.options,
+      {
+        id: uuid4().slice(0, 5),
+        label: `مورد ${newIndex}`,
+      },
+    ],
   });
 };
 
@@ -268,12 +276,11 @@ const handleRemoveOption = (idx) => {
   });
 };
 
-const handleChangeOption = (event, idx) => {
-  const newOptions = [...element.options];
-  newOptions[idx] = event.target.innerText;
-
+const handleChangeOption = (event, optionId) => {
   updateElement(formId, element.id, {
-    options: newOptions,
+    options: element.options.map((option) =>
+      option.id === optionId ? { ...option, label: event.target.innerText } : option
+    ),
   });
 };
 

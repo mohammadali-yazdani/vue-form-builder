@@ -78,10 +78,9 @@
 import { ref } from "vue";
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } from "@headlessui/vue";
 import { PlusSquare } from "lucide-vue-next";
-import { useFormSore } from "@/stores/forms";
-import { v4 as uuid4 } from "uuid";
+import { useFormStore } from "@/stores/forms";
 
-const { addForm } = useFormSore();
+const { addForm } = useFormStore();
 
 const isOpen = ref(false);
 const formName = ref("");
@@ -98,11 +97,7 @@ function addFormHandler(e) {
 
   if (!formName.value.trim()) return;
 
-  addForm({
-    id: uuid4().slice(0, 5),
-    name: formName.value,
-    elements: [],
-  });
+  addForm({ name: formName.value });
 
   formName.value = "";
   closeModal();
